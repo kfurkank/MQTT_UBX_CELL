@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<title>----------------</title>	
+	
+	</head>
+	<body>
+		<h1>TrendOPeak Configuration System / TrendOPeak Konfigurasyon Sistemi</h1>
+		<form class="form1" id="loginForm" action="">
+		<div>
+			<label for="SSID">WiFi Name / Wifi Adi</label>
+			<input id="ssid" type="text" name="ssid" maxlength="64" minlength="4">
+		</div>
+		<div>
+			<label for="Password">Password / Sifre</label>
+			<input id="pwd" type="password" name="pwd" maxlength="64" minlength="4">
+		</div>
+		<div>
+
+		</div>
+		<h4  style="text-align:center">!!! Get User Auth Data from TrendOPeak Monitor - Kullanıcı Erişim Bilgisini TrendOPeak OMonitor ekranından alınız. </h4>
+		<div>
+			<label for="HostUser">Host Username-Auth</label>
+			<input id="hostuser" type="text" name="hostuser" maxlength="64" minlength="4">
+		</div>
+		</div>
+		<h4  style="text-align:center">!!! Please Do not Input Anything Below - Alttakileri Doldurmayiniz.!!!</h4>
+		<div>
+		<div>
+			<label for="Host">Communication Host</label>
+			<input id="host" type="text" name="host" maxlength="64" minlength="10">
+		</div>
+		<div>
+			<label for="UpdatePass">Firmware Update Password</label>
+			<input id="updatePass" type="password" name="updatePass" maxlength="64" minlength="4">
+		</div>
+		<div>
+			<button>Submit</button>
+		</div>
+		</form>
+		<script>
+			document.getElementById("loginForm").addEventListener("submit", (e) => {
+					e.preventDefault();
+					const formData = new FormData(e.target);
+					const data = Array.from(formData.entries()).reduce((memo, pair) => ({...memo, [pair[0]]: pair[1],  }), {});
+					var xhr = new XMLHttpRequest();
+					xhr.open("POST", "/configPost", true);
+					xhr.send(JSON.stringify(data));
+					window.location.assign("/thanks");
+			});
+		</script>
+	</body>
+</html>
